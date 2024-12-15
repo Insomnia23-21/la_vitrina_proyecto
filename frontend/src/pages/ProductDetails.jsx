@@ -13,7 +13,7 @@ const ProductDetails = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`https://la-vitrina-backend.onrender.com/api/products/${id}`);
+        const response = await axios.get(`https://la-vitrina-proyecto.onrender.com/api/products${id}`);
         setProduct(response.data);
       } catch (err) {
         setError("Error fetching product details");
