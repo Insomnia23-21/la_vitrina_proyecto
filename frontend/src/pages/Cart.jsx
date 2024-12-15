@@ -4,7 +4,6 @@ import { useCart } from "../context/CartContext";
 const Cart = () => {
   const { cart, removeFromCart } = useCart();
 
-  // Calcular el total del carrito
   const getTotal = () => {
     return cart.reduce((total, item) => total + parseFloat(item.price), 0);
   };

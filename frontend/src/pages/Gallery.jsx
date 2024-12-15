@@ -10,13 +10,17 @@ const Gallery = () => {
   const { addToCart } = useCart();
 
   useEffect(() => {
-    axios
-      .get(`${API_URL}/products`)
-      .then((response) => setProducts(response.data))
-      .catch((error) => {
-        console.error("Error fetching products:", error);
-        setError("Error al cargar los productos");
-      });
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get("https://la-vitrina-backend.onrender.com/api/products");
+        setProducts(response.data);
+      } catch (err) {
+        setError("Error fetching products");
+        console.error("Error fetching products:", err.message);
+      }
+    };
+
+    fetchProducts();
   }, []);
 
   return (

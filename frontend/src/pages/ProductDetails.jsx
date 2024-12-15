@@ -8,20 +8,21 @@ const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [error, setError] = useState(null);
-  const { addToCart } = useCart(); // Obtener addToCart del contexto
+  const { addToCart } = useCart(); 
 
   useEffect(() => {
-    axios
-      .get(`${API_URL}/products/${id}`)
-      .then((response) => setProduct(response.data))
-      .catch((error) => {
-        console.error("Error fetching product details:", error);
-        setError("Error al cargar los detalles del producto");
-      });
-  }, [id]);
+    const fetchProduct = async () => {
+      try {
+        const response = await axios.get(`https://la-vitrina-backend.onrender.com/api/products/${id}`);
+        setProduct(response.data);
+      } catch (err) {
+        setError("Error fetching product details");
+        console.error("Error fetching product details:", err.message);
+      }
+    };
 
-  if (error) return <p className="text-danger">{error}</p>;
-  if (!product) return <p>Cargando...</p>;
+    fetchProduct();
+  }, [id]);
 
   return (
     <div className="container mt-5">
