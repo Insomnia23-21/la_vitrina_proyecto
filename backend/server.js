@@ -22,7 +22,7 @@ app.get("/api", (req, res) => {
   res.json({ message: "¡Hola desde el backend!" });
 });
 
-// Redirigir cualquier ruta desconocida al frontend
+// Redirigir cualquier ruta al frontend
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
