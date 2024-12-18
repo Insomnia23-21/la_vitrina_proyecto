@@ -28,10 +28,32 @@ const Login = () => {
     <div className="container mt-5 page-container">
       <h2>Iniciar Sesión</h2>
       <form onSubmit={handleSubmit}>
-        <input type="email" name="email" placeholder="Correo" onChange={handleChange} required />
-        <input type="password" name="password" placeholder="Contraseña" onChange={handleChange} required />
-        <button type="submit">Iniciar Sesión</button>
-        {error && <p className="text-danger">{error}</p>}
+        <div className="mb-3">
+          <label className="form-label">Correo Electrónico</label>
+          <input
+            type="email"
+            name="email"
+            className="form-control"
+            placeholder="Correo electrónico"
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Contraseña</label>
+          <input
+            type="password"
+            name="password"
+            className="form-control"
+            placeholder="Contraseña"
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <button type="submit" className="btn btn-primary w-100">
+          Iniciar Sesión
+        </button>
+        {error && <div className="alert alert-danger mt-3">{error}</div>}
       </form>
     </div>
   );

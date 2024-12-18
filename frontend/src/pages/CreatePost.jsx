@@ -22,12 +22,45 @@ const CreatePost = () => {
   };
 
   return (
-    <div className="container mt-5 page-container"> 
+    <div className="container mt-5 page-container">
+      <h2>Crear Publicación</h2>
       <form onSubmit={handleSubmit}>
-       <input type="text" name="title" placeholder="Título" onChange={handleChange} required />
-       <textarea name="description" placeholder="Descripción" onChange={handleChange} required />
-       <input type="text" name="image" placeholder="URL de la imagen" onChange={handleChange} required />
-       <button type="submit">Crear Publicación</button>
+        <div className="mb-3">
+          <label className="form-label">Título</label>
+          <input
+            type="text"
+            name="title"
+            className="form-control"
+            placeholder="Título"
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Descripción</label>
+          <textarea
+            name="description"
+            className="form-control"
+            placeholder="Descripción"
+            rows="4"
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">URL de la Imagen</label>
+          <input
+            type="text"
+            name="image"
+            className="form-control"
+            placeholder="URL de la imagen"
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <button type="submit" className="btn btn-success w-100">
+          Crear Publicación
+        </button>
       </form>
     </div>
   );
