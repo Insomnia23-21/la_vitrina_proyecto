@@ -6,19 +6,17 @@ const productRoutes = require("./routes/productRoutes");
 
 dotenv.config();
 
-app.get("/test", (req, res) => {
-  res.send("El servidor está funcionando correctamente");
-});
-
 const app = express();
 
 // Middlewares
-app.use(cors({
-  origin: "https://la-vitrina-proyecto.onrender.com", 
-  credentials: true, 
-}));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Ruta de prueba
+app.get("/test", (req, res) => {
+  res.send("El servidor está funcionando correctamente");
+});
 
 // Rutas
 app.use("/api/users", userRoutes);
