@@ -1,7 +1,6 @@
 .page-container {
     background-color: #f5e6cc; /* Tono café con leche */
     min-height: 100vh;        /* Altura mínima para cubrir toda la pantalla */
-    padding: 2rem;            /* Espaciado interior */
   }
   
   /* Asegurarse de que el texto sea legible */
