@@ -30,13 +30,13 @@ router.get("/:id", async (req, res) => {
 
 // Crear una nueva publicación (protegida por autenticación)
 router.post("/create", protect, async (req, res) => {
-  const { title, description, image } = req.body;
+  const { title, description, image, price } = req.body; // Agregamos el campo 'price'
   const userId = req.user.id;
 
   try {
     await pool.query(
-      "INSERT INTO products (title, description, image, user_id) VALUES ($1, $2, $3, $4)",
-      [title, description, image, userId]
+      "INSERT INTO products (title, description, image, price, user_id) VALUES ($1, $2, $3, $4, $5)", // Actualizamos la consulta
+      [title, description, image, price, userId] // Añadimos 'price' a los valores
     );
     res.status(201).json({ message: "Publicación creada exitosamente" });
   } catch (error) {

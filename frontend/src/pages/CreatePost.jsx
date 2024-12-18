@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const CreatePost = () => {
-  const [formData, setFormData] = useState({ title: "", description: "", image: "" });
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    image: "",
+    price: "",
+  });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -12,12 +17,17 @@ const CreatePost = () => {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token");
-      await axios.post("https://la-vitrina-backend.onrender.com/api/posts/create", formData, {
-        headers: { Authorization: token },
-      });
+      await axios.post(
+        "https://la-vitrina-backend.onrender.com/api/posts/create",
+        formData,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       alert("Publicación creada exitosamente");
     } catch (error) {
       console.error("Error al crear la publicación:", error.message);
+      alert("Error al crear la publicación");
     }
   };
 
@@ -54,6 +64,17 @@ const CreatePost = () => {
             name="image"
             className="form-control"
             placeholder="URL de la imagen"
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Precio</label>
+          <input
+            type="number"
+            name="price"
+            className="form-control"
+            placeholder="Precio"
             onChange={handleChange}
             required
           />
