@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const pool = require("../config/db"); // Cambié `query` por `pool` para usar la conexión existente
+const pool = require("../config/db");
 
 // Middleware para proteger rutas
 const protect = async (req, res, next) => {

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const pool = require("../config/db");
-const { protect } = require("../middleware/authMiddleware"); // Importar el middleware
+const { protect } = require("../middlewares/authMiddleware");
 
 // Obtener todos los productos
 router.get("/", async (req, res) => {
