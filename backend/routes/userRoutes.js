@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const pool = require("../config/db");
-const { protect } = require("../middleware/authMiddleware"); // Importar el middleware
+const { protect } = require("../middleware/authMiddleware");
 
 // Registro de usuario
 router.post("/register", async (req, res) => {
