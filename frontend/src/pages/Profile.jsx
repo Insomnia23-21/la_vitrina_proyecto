@@ -1,10 +1,9 @@
 import React, { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { AppContext } from "../context/ContextProvider";
-import axios from "axios";
+import { Context } from "../context/ContextProvider"; 
 
 const Profile = () => {
-  const { user, login } = useContext(AppContext);
+  const { user, login } = useContext(Context);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,9 +16,12 @@ const Profile = () => {
       }
 
       try {
-        const response = await axios.get("https://la-vitrina-proyecto.onrender.com/api/users/profile", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const response = await axios.get(
+          "https://la-vitrina-proyecto.onrender.com/api/users/profile",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
         login(response.data);
       } catch {
         navigate("/login");
@@ -30,10 +32,16 @@ const Profile = () => {
   }, [navigate, login]);
 
   return user ? (
-    <div>
-      <h1>Hola, {user.name}!</h1>
+    <div className="container mt-5">
+      <h2>Mi Perfil</h2>
+      <div className="card p-4">
+        <p><strong>Nombre de usuario:</strong> {user.name}</p>
+        <p><strong>Correo Electrónico:</strong> {user.email}</p>
+      </div>
     </div>
   ) : (
-    <div>Cargando...</div>
+    <p className="text-center mt-5">Cargando perfil...</p>
   );
 };
+
+export default Profile;
