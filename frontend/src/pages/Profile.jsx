@@ -31,7 +31,7 @@ const Profile = () => {
   }, [navigate, login]);
 
   return user ? (
-    <div className="container mt-5">
+    <div className="container mt-5 page-container">
       <h2>Mi Perfil</h2>
       <div className="card p-4">
         <p><strong>Nombre de usuario:</strong> {user.name}</p>

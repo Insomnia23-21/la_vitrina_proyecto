@@ -22,12 +22,14 @@ const CreatePost = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" name="title" placeholder="Título" onChange={handleChange} required />
-      <textarea name="description" placeholder="Descripción" onChange={handleChange} required />
-      <input type="text" name="image" placeholder="URL de la imagen" onChange={handleChange} required />
-      <button type="submit">Crear Publicación</button>
-    </form>
+    <div className="container mt-5 page-container"> 
+      <form onSubmit={handleSubmit}>
+       <input type="text" name="title" placeholder="Título" onChange={handleChange} required />
+       <textarea name="description" placeholder="Descripción" onChange={handleChange} required />
+       <input type="text" name="image" placeholder="URL de la imagen" onChange={handleChange} required />
+       <button type="submit">Crear Publicación</button>
+      </form>
+    </div>
   );
 };
 

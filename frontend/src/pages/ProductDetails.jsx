@@ -33,7 +33,7 @@ const ProductDetails = () => {
   }
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 page-container">
       <h2>{product.name}</h2>
       <img
         src={product.image}

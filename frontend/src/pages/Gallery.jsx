@@ -24,7 +24,7 @@ const Gallery = () => {
   }, []);
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 page-container">
       <h2>Galería de Productos</h2>
       {error && <p className="text-danger">{error}</p>}
       <div className="row">
