@@ -1,21 +1,10 @@
-html, body {
-  margin: 0;
-  padding: 0;
-}
-
 body {
-  background-color: #f5e1c5; 
+  background-color: #f5e1c5; /* Color café con leche */
   margin: 0;
   padding: 0;
-  min-height: 100vh; 
+  min-height: 100vh;
 }
 
-.page-container {
-    background-color: #f5e6cc; 
-    min-height: 100vh;      
-  }
-  
-  .page-container h2,
-  .page-container p {
-    color: #3e2723;         
-  }
+.container-fluid {
+  padding: 20px;
+}

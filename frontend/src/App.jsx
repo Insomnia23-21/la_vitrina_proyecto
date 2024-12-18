@@ -20,6 +20,7 @@ const App = () => {
       <CartProvider>
         <Router>
           <NavBar />
+          <div className="container-fluid">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/register" element={<Register />} />
@@ -30,6 +31,7 @@ const App = () => {
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="/cart" element={<Cart />} />
           </Routes>
+          </div>
           <Footer />
         </Router>
       </CartProvider>
