@@ -17,13 +17,10 @@ const CreatePost = () => {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token");
-      await axios.post(
-        "https://la-vitrina-backend.onrender.com/api/posts/create",
-        formData,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      await axios.post("https://la-vitrina-backend.onrender.com/api/products/create", formData, {
+        headers: { Authorization: `Bearer ${token}` }, 
+      });
+
       alert("Publicación creada exitosamente");
     } catch (error) {
       console.error("Error al crear la publicación:", error.message);
