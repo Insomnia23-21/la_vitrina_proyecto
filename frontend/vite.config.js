@@ -3,15 +3,16 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  esbuild: {
-    target: "esnext",
-  },
   server: {
     proxy: {
-      "/api": "http://localhost:3000", 
+      "/api": {
+        target: "https://la-vitrina-proyecto.onrender.com",
+        changeOrigin: true,
+        secure: true,
+      },
     },
   },
   build: {
-    outDir: "../backend/public", 
+    outDir: "../backend/public",
   },
 });
