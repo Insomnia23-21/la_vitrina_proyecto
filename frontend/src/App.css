@@ -1,10 +1,13 @@
-body, html {
+body {
+  background-color: #f5f0e1; /* Color café con leche */
   margin: 0;
   padding: 0;
-  background-color: #f5f0e1; /* Color café con leche */
-  min-height: 100vh;        /* Asegura que el body cubra toda la altura de la ventana */
+  min-height: 100vh;
 }
 
-.container, .container-fluid {
-  background-color: #f5f0e1; /* Aplica el color de fondo a los contenedores específicos si es necesario */
+.main-content {
+  background-color: #f5f0e1; /* Color café con leche */
+  min-height: 100vh;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }

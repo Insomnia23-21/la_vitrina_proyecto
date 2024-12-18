@@ -18,18 +18,20 @@ const App = () => {
   return (
     <ContextProvider>
       <CartProvider>
-        <Router>
+       <Router>
           <NavBar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/create-post" element={<CreatePost />} />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/product/:id" element={<ProductDetails />} />
-            <Route path="/cart" element={<Cart />} />
-          </Routes>
+            <div className="main-content">
+              <Routes>
+               <Route path="/" element={<Home />} />
+               <Route path="/register" element={<Register />} />
+               <Route path="/login" element={<Login />} />
+               <Route path="/profile" element={<Profile />} />
+               <Route path="/create-post" element={<CreatePost />} />
+               <Route path="/gallery" element={<Gallery />} />
+               <Route path="/product/:id" element={<ProductDetails />} />
+               <Route path="/cart" element={<Cart />} />
+              </Routes>
+            </div>
           <Footer />
         </Router>
       </CartProvider>
