@@ -17,7 +17,7 @@ const Profile = () => {
       }
 
       try {
-        const response = await axios.get("https://la-vitrina-backend.onrender.com/api/users/profile", {
+        const response = await axios.get("https://la-vitrina-proyecto.onrender.com/api/users/profile", {
           headers: { Authorization: `Bearer ${token}` },
         });
         login(response.data);

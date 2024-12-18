@@ -17,7 +17,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://la-vitrina-backend.onrender.com/api/users/register", formData);
+      await axios.post("https://la-vitrina-proyecto.onrender.com/api/users/register", formData);
       setSuccess("¡Registro exitoso! Redirigiendo al login...");
       setTimeout(() => {
         navigate("/login");
