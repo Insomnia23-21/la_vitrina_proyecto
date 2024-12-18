@@ -1,7 +1,6 @@
 const express = require("express");
-const path = require("path");
-const dotenv = require("dotenv");
 const cors = require("cors");
+const dotenv = require("dotenv");
 const userRoutes = require("./routes/userRoutes");
 const productRoutes = require("./routes/productRoutes");
 
@@ -9,26 +8,17 @@ dotenv.config();
 
 const app = express();
 
-// Middleware para permitir CORS
+// Middlewares
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Middleware para servir el frontend
-app.use(express.static(path.join(__dirname, "public")));
-
+// Rutas
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
 
-app.get("/api", (req, res) => {
-  res.json({ message: "¡Hola desde el backend!" });
-});
-
-// Redirigir cualquier ruta al frontend
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
-
+// Iniciar el servidor
 const PORT = process.env.PORT || 3000;
-
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
