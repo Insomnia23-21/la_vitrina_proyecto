@@ -8,12 +8,12 @@ const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [error, setError] = useState(null);
-  const { addToCart } = useCart(); 
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`/api/products/${id}`);
+        const response = await axios.get(`${API_URL}/products/${id}`);
         setProduct(response.data);
       } catch (err) {
         setError("Error fetching product details");
@@ -23,6 +23,14 @@ const ProductDetails = () => {
 
     fetchProduct();
   }, [id]);
+
+  if (error) {
+    return <p className="text-danger mt-5">{error}</p>;
+  }
+
+  if (!product) {
+    return <p className="text-center mt-5">Cargando detalles del producto...</p>;
+  }
 
   return (
     <div className="container mt-5">
