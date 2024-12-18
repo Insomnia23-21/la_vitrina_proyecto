@@ -1,61 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import axios from "axios";
 
 const CreatePost = () => {
-  const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    price: '',
-  });
+  const [formData, setFormData] = useState({ title: "", description: "", image: "" });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Nueva publicación:', formData);
+    try {
+      const token = localStorage.getItem("token");
+      await axios.post("https://la-vitrina-backend.onrender.com/api/posts/create", formData, {
+        headers: { Authorization: token },
+      });
+      alert("Publicación creada exitosamente");
+    } catch (error) {
+      console.error("Error al crear la publicación:", error.message);
+    }
   };
 
   return (
-    <div className="container mt-5">
-      <h2>Crear Publicación</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label className="form-label">Título</label>
-          <input
-            type="text"
-            name="title"
-            className="form-control"
-            value={formData.title}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Descripción</label>
-          <textarea
-            name="description"
-            className="form-control"
-            value={formData.description}
-            onChange={handleChange}
-            required
-          ></textarea>
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Precio</label>
-          <input
-            type="number"
-            name="price"
-            className="form-control"
-            value={formData.price}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">Publicar</button>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <input type="text" name="title" placeholder="Título" onChange={handleChange} required />
+      <textarea name="description" placeholder="Descripción" onChange={handleChange} required />
+      <input type="text" name="image" placeholder="URL de la imagen" onChange={handleChange} required />
+      <button type="submit">Crear Publicación</button>
+    </form>
   );
 };
 

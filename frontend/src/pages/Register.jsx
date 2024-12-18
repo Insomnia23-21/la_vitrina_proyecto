@@ -1,63 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-  });
+  const [formData, setFormData] = useState({ name: "", email: "", password: "" });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Datos enviados:', formData);
-    // Lógica para enviar los datos al backend
+    try {
+      await axios.post("https://la-vitrina-backend.onrender.com/api/auth/register", formData);
+      navigate("/login");
+    } catch (error) {
+      console.error("Error en el registro:", error.message);
+    }
   };
 
   return (
-    <div className="container mt-5">
-      <h2>Registro de Usuario</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label className="form-label">Nombre de usuario</label>
-          <input
-            type="text"
-            name="username"
-            className="form-control"
-            value={formData.username}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Correo Electrónico</label>
-          <input
-            type="email"
-            name="email"
-            className="form-control"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Contraseña</label>
-          <input
-            type="password"
-            name="password"
-            className="form-control"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">Registrarse</button>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <input type="text" name="name" placeholder="Nombre" onChange={handleChange} required />
+      <input type="email" name="email" placeholder="Correo electrónico" onChange={handleChange} required />
+      <input type="password" name="password" placeholder="Contraseña" onChange={handleChange} required />
+      <button type="submit">Registrarse</button>
+    </form>
   );
 };
 

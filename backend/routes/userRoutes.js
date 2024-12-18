@@ -3,6 +3,22 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const pool = require("../config/db");
+const { protect } = require("../middleware/authMiddleware"); // Importar el middleware
+
+// Registro de usuario
+router.post("/register", async (req, res) => {
+  const { name, email, password } = req.body;
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    await pool.query(
+      "INSERT INTO users (name, email, password) VALUES ($1, $2, $3)",
+      [name, email, hashedPassword]
+    );
+    res.status(201).json({ message: "Usuario registrado exitosamente" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 // Login de usuario
 router.post("/login", async (req, res) => {
@@ -22,8 +38,7 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ message: "Contraseña incorrecta" });
     }
 
-    // Crear un token JWT
-    const token = jwt.sign({ id: user.id, email: user.email, name: user.name }, process.env.SECRET_KEY, {
+    const token = jwt.sign({ id: user.id, name: user.name }, process.env.SECRET_KEY, {
       expiresIn: "1h",
     });
 
@@ -33,19 +48,9 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// Registro de usuario
-router.post("/register", async (req, res) => {
-  const { name, email, password } = req.body;
-  try {
-    const hashedPassword = await bcrypt.hash(password, 10);
-    await pool.query(
-      "INSERT INTO users (name, email, password) VALUES ($1, $2, $3)",
-      [name, email, hashedPassword]
-    );
-    res.status(201).json({ message: "Usuario registrado exitosamente" });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+// Ruta protegida para obtener el perfil del usuario
+router.get("/profile", protect, (req, res) => {
+  res.json(req.user);
 });
 
 module.exports = router;
