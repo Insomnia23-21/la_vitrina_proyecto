@@ -4,6 +4,7 @@ import { useCart } from "../context/CartContext";
 
 const NavBar = () => {
   const { cart } = useCart();
+  const { user, logout } = useContext(Context);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -31,12 +32,26 @@ const NavBar = () => {
             <li className="nav-item">
               <Link className="nav-link" to="/create-post">Nueva Publicación</Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/register">Registro</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/login">Login</Link>
-            </li>
+            {!user ? (
+              <>
+                <li className="nav-item">
+                  <Link to="/register" className="nav-link">
+                    Registro
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/login" className="nav-link">
+                    Login
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <li className="nav-item">
+                <button className="btn btn-danger" onClick={logout}>
+                  Cerrar Sesión
+                </button>
+              </li>
+            )}
             <li className="nav-item">
               <Link className="nav-link" to="/cart">
                 Carrito
