@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { API_URL } from "../config"; // Solo una importación de API_URL
+import { API_URL } from "../config"; 
 import { useCart } from "../context/CartContext";
 import { Link } from "react-router-dom";
 
@@ -12,7 +12,7 @@ const Gallery = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(`${API_URL}/products`);
+        const response = await axios.get("https://la-vitrina-proyecto.onrender.com/api/products");
         setProducts(response.data);
       } catch (err) {
         setError("Error fetching products");

@@ -5,6 +5,7 @@ const { protect } = require("../middlewares/authMiddleware");
 
 // Obtener todos los productos
 router.get("/", async (req, res) => {
+  console.log("Solicitud recibida en /api/products");
   try {
     const result = await pool.query("SELECT * FROM products");
     res.json(result.rows);

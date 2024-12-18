@@ -6,6 +6,10 @@ const productRoutes = require("./routes/productRoutes");
 
 dotenv.config();
 
+app.get("/test", (req, res) => {
+  res.send("El servidor está funcionando correctamente");
+});
+
 const app = express();
 
 // Middlewares
