@@ -10,8 +10,8 @@ const Login = () => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    setError(null); // Limpiar errores anteriores al cambiar los campos
-    setSuccess(null); // Limpiar mensajes de éxito anteriores
+    setError(null); 
+    setSuccess(null); 
   };
 
   const handleSubmit = async (e) => {

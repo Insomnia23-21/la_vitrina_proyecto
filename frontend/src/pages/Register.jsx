@@ -10,8 +10,8 @@ const Register = () => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    setError(null); // Limpiar errores anteriores
-    setSuccess(null); // Limpiar mensajes de éxito anteriores
+    setError(null);
+    setSuccess(null);
   };
 
   const handleSubmit = async (e) => {
@@ -21,7 +21,7 @@ const Register = () => {
       setSuccess("¡Registro exitoso! Redirigiendo al login...");
       setTimeout(() => {
         navigate("/login");
-      }, 2000); // Redirigir después de 2 segundos
+      }, 2000);
     } catch (error) {
       setError("Error en el registro: " + (error.response?.data?.message || "Intenta de nuevo"));
     }
