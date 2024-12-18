@@ -1,6 +1,8 @@
 import React, { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Context } from "../context/ContextProvider"; 
+import axios from "axios";
+import { API_URL } from "../config";
+import { Context } from "../context/ContextProvider";
 
 const Profile = () => {
   const { user, login } = useContext(Context);
@@ -16,12 +18,9 @@ const Profile = () => {
       }
 
       try {
-        const response = await axios.get(
-          "https://la-vitrina-proyecto.onrender.com/api/users/profile",
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
+        const response = await axios.get(`${API_URL}/users/profile`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         login(response.data);
       } catch {
         navigate("/login");

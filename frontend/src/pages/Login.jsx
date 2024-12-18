@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../config";
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -15,7 +16,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("https://la-vitrina-proyecto.onrender.com/api/users/login", formData);
+      const response = await axios.post(`${API_URL}/users/login`, formData);
       localStorage.setItem("token", response.data.token);
       navigate("/profile");
     } catch (error) {

@@ -9,7 +9,10 @@ dotenv.config();
 const app = express();
 
 // Middlewares
-app.use(cors());
+app.use(cors({
+  origin: "https://la-vitrina-proyecto.onrender.com", 
+  credentials: true, 
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
