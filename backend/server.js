@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const path = require("path");
 const userRoutes = require("./routes/userRoutes");
 const productRoutes = require("./routes/productRoutes");
 
@@ -13,14 +14,17 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Ruta de prueba
-app.get("/test", (req, res) => {
-  res.send("El servidor está funcionando correctamente");
-});
-
-// Rutas
+// Rutas de la API
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
+
+// Servir archivos estáticos del frontend
+app.use(express.static(path.join(__dirname, "public")));
+
+// Servir el archivo index.html para cualquier otra ruta
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 
 // Iniciar el servidor
 const PORT = process.env.PORT || 3000;
